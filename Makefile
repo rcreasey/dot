@@ -9,6 +9,7 @@ ifndef BREW
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby
 endif
 	brew install stow
+	bash scripts/macos.sh
 
 install:
 	stow --restow --ignore ".DS_Store" --target="$(pwd)./test" --dir=$(DOTFILES) files
