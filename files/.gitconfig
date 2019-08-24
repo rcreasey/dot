@@ -1,4 +1,7 @@
 [user]
     name = Ryan C. Creasey
     email = ryan@kaneda.net
-    signingkey = ryan@kaneda.net
+    signingkey = 0F956CFA0D3DE70E
+
+[commit]
+    gpgsign = true
