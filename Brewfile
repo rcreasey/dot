@@ -55,8 +55,6 @@ brew "zsh"
 
 cask "aerial"
 cask "alfred"
-cask "amethyst"
-cask "atom"
 cask "bartender"
 cask "bettertouchtool"
 cask "beyond-compare"
