@@ -1,4 +1,4 @@
-DOTFILES ?= "${HOME}/.dotfiles"
+DOTFILES ?= "${HOME}/.dot"
 BREW := $(shell command -v brew 2> /dev/null)
 
 .PHONY: all install
@@ -12,7 +12,7 @@ endif
 	bash scripts/macos.sh
 
 install:
-	stow --restow --ignore ".DS_Store" --target="$(pwd)./test" --dir=$(DOTFILES) files
-	brew bundle --file="${DOTFILES}/homebrew/Brewfile"
+	stow --restow --ignore ".DS_Store" --target="${HOME}" --dir=$(DOTFILES) files
+	brew bundle --file="${DOTFILES}/Brewfile"
 	brew cleanup
 	brew doctor

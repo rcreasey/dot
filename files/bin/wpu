@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+import argparse
+import logging
+import os
+import pathlib
+import random
+import requests
+import shutil
+import subprocess
+import time
+
+
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+
+parser = argparse.ArgumentParser(description='A desktop wallpaper setter and themer')
+parser.add_argument('--image', type=str, default='random', help='Source for image (default "random")')
+
+args = parser.parse_args()
+
+if (args.image is 'random'):
+    wallpaper_path = os.path.join(pathlib.Path.home(), 'Pictures', 'Wallpaper', 'current.jpg')
+    resolution = '1440x900'
+    collections = [2357604, 3508426, 1763703, 3504269, 3453934, 3504269]
+
+    url = 'https://source.unsplash.com/collection/{0}/{1}'.format(random.choice(collections), resolution)
+    logging.info('Downloading {0}\nto {1}'.format(url, wallpaper_path))
+    response = requests.get(url, stream=True)
+
+    with open(wallpaper_path, 'wb') as out_file:
+        shutil.copyfileobj(response.raw, out_file)
+
+    del response
+else: 
+    wallpaper_path = args.image
+    logging.info('Using source image {0}'.format(wallpaper_path))
+
+shutil.rmtree(os.path.join(pathlib.Path.home(), '.cache', 'wal'), ignore_errors=True)
+subprocess.call(['wal', '-c'])
+subprocess.Popen(['wal', '-i', wallpaper_path, '-e', '--vte'])
+
+time.sleep(3)
+subprocess.call(['neofetch', '--clean'])
+subprocess.call(['neofetch', '--backend', 'iterm2'])
