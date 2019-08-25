@@ -30,3 +30,4 @@ zplug "sindresorhus/pure", defer:2
 zplug check || zplug install
 
 zplug load
+
