@@ -38,6 +38,7 @@ shutil.rmtree(os.path.join(pathlib.Path.home(), '.cache', 'wal'), ignore_errors=
 subprocess.call(['wal', '-c'])
 subprocess.Popen(['wal', '-i', wallpaper_path, '-e', '--vte'])
 
-time.sleep(3)
+time.sleep(2)
 subprocess.call(['neofetch', '--clean'])
 subprocess.call(['neofetch', '--backend', 'iterm2'])
+subprocess.call(['pecan-wal-set'])
