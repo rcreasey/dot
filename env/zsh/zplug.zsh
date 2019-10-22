@@ -19,8 +19,6 @@ zplug "zsh-users/zsh-completions"
 
 zplug "glidenote/hub-zsh-completion"
 
-zplug "ahmetb/kubectx", use:kubectx, as:command
-zplug "ahmetb/kubectx", use:kubens, as:command
 zplug "johanhaleby/kubetail"
 
 # prompt
