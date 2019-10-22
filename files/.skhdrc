@@ -1,5 +1,5 @@
 # open terminal 
-cmd - return : ~/.dot/scripts/iterm.sh
+#cmd - return : ~/.dot/scripts/iterm.sh
 
 # screenshot
 shift + alt + cmd - s : ~/.dot/scripts/screenshot.sh

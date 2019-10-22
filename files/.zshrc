@@ -16,3 +16,5 @@ for file in ${(M)env_files:#*/*.env}; do
 done
 
 unset env_files
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
