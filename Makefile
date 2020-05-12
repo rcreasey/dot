@@ -1,7 +1,7 @@
 DOTFILES ?= "${HOME}/.dot"
 BREW := $(shell command -v brew 2> /dev/null)
 
-.PHONY: all install
+.PHONY: all install update
 all: install
 
 bootstrap:
@@ -11,8 +11,10 @@ endif
 	brew install stow
 	bash scripts/macos.sh
 
-install:
+update:
 	stow --restow --ignore ".DS_Store" --target="${HOME}" --dir=$(DOTFILES) files
+
+install: @update
 	brew bundle --file="${DOTFILES}/Brewfile"
 	brew cleanup
 	brew doctor

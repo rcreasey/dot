@@ -9,6 +9,9 @@ if zplug check "b4b4r07/enhancd"; then
 fi
 zplug "tarrasch/zsh-bd"
 
+zplug 'plugins/git', from:oh-my-zsh
+zplug 'plugins/vi-mode', from:oh-my-zsh
+
 zplug "chrissicool/zsh-256color"
 zplug "supercrabtree/k"
 
@@ -28,4 +31,3 @@ zplug "sindresorhus/pure", defer:2
 zplug check || zplug install
 
 zplug load
-

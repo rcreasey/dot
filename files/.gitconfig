@@ -1,7 +1,41 @@
+[hub]
+        protocol = https
+	host = ***REMOVED***
 [user]
-    name = Ryan C. Creasey
-    email = ryan@kaneda.net
-    signingkey = 0F956CFA0D3DE70E
-
+        name = Ryan C. Creasey
+        email = rcreasey@blizzard.com
+	signkey = ***REMOVED***D
+[credential]
+        helper = osxkeychain
+[alias]
+        co = checkout
+        promote = !$ZSH/bin/git-promote
+        wtf     = !$ZSH/bin/git-wtf
+        rank-contributors = !$ZSH/bin/git-rank-contributors
+        count   = !git shortlog -sn
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        ui = true
+[core]
+        editor = code --wait
+        excludesfile = ~/.gitignore
+        whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[apply]
+        whitespace = nowarn
+[mergetool]
+        keepBackup = false
+[difftool]
+        prompt = false
+[help]
+        autocorrect = 1
+[push]
+        default = tracking
 [commit]
-    gpgsign = true
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

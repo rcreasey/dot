@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import argparse
+import glob
 import logging
 import os
 import pathlib
@@ -7,6 +8,7 @@ import random
 import requests
 import shutil
 import subprocess
+import sys
 import time
 
 
@@ -17,19 +19,28 @@ parser.add_argument('--image', type=str, default='random', help='Source for imag
 
 args = parser.parse_args()
 
-if (args.image is 'random'):
+if (args.image == 'random'):
     wallpaper_path = os.path.join(pathlib.Path.home(), 'Pictures', 'Wallpaper', 'current.jpg')
     resolution = '1440x900'
-    collections = [2357604, 3508426, 1763703, 3504269, 3453934, 3504269]
+    search_terms = 'knolling'
+    search_terms = 'wallpaper'
+    search_terms = 'outrun'
 
-    url = 'https://source.unsplash.com/collection/{0}/{1}'.format(random.choice(collections), resolution)
+    url = 'https://source.unsplash.com/random/{0}/?{1}'.format(resolution, search_terms)
+
     logging.info('Downloading {0}\nto {1}'.format(url, wallpaper_path))
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, verify=False)
 
     with open(wallpaper_path, 'wb') as out_file:
         shutil.copyfileobj(response.raw, out_file)
 
     del response
+
+elif (args.image == 'unsplash'):
+    wallpaper_base = os.path.join(pathlib.Path.home(), 'Pictures', 'Unsplash')
+    wallpaper_path = glob.glob(os.path.join(wallpaper_base, 'desktop-*.jpg'))[0]
+    logging.info('Using Unsplash image {0}'.format(wallpaper_path))
+
 else: 
     wallpaper_path = args.image
     logging.info('Using source image {0}'.format(wallpaper_path))
@@ -41,4 +52,5 @@ subprocess.Popen(['wal', '-i', wallpaper_path, '-e', '--vte'])
 time.sleep(2)
 subprocess.call(['neofetch', '--clean'])
 subprocess.call(['neofetch', '--backend', 'iterm2'])
-subprocess.call(['pecan-wal-set'])
+
+
