@@ -1,6 +1,3 @@
-[hub]
-        protocol = https
-	host = ghosthub.corp.blizzard.net
 [user]
         name = Ryan C. Creasey
         email = rcreasey@blizzard.com
